@@ -1,0 +1,66 @@
+# Default values for calendar-app.
+
+replicaCount: 1
+
+image:
+  repository: faizananwar532/hsfulda-argocd-demo
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 3000
+
+# Health check configuration
+healthCheck:
+  enabled: true
+  livenessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    path: /
+  readinessProbe:
+    initialDelaySeconds: 5
+    periodSeconds: 5
+    path: /
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+
+# MySQL dependency configuration
+mysql:
+  auth:
+    rootPassword: rootpassword
+    database: calendarDB
+    username: calendaruser
+    password: 12123434example
+  primary:
+    persistence:
+      enabled: true
+      size: 1Gi
+  # Use the Bitnami MySQL chart
+  enabled: true
+  # Initialize database with our SQL script
+  initdbScriptsConfigMap: "{{ .Release.Name }}-init-sql" 

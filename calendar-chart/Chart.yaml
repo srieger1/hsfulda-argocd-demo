@@ -1,0 +1,16 @@
+apiVersion: v2
+name: calendar-app
+description: A Helm chart for Calendar Application
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - calendar
+  - events
+maintainers:
+  - name: Faizi
+    email: faizi@example.com
+dependencies:
+  - name: mysql
+    version: "12.2.2"
+    repository: "https://charts.bitnami.com/bitnami" 
