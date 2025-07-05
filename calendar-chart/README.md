@@ -77,7 +77,7 @@ helm uninstall my-calendar
 | `mysql.auth.database`                | MySQL custom database                           | `calendarDB`    |
 | `mysql.auth.username`                | MySQL custom user name                          | `calendaruser`  |
 | `mysql.auth.password`                | MySQL custom user password                      | `12123434example` |
-| `mysql.primary.persistence.enabled`  | Enable persistence using PVC                    | `true`          |
+| `mysql.primary.persistence.enabled`  | Enable persistence using PVC                    | `false`          |
 | `mysql.primary.persistence.size`     | PVC Storage Request for MySQL volume            | `1Gi`           |
 | `mysql.initdbScriptsConfigMap`       | ConfigMap with the init scripts                 | `<release-name>-init-sql` |
 
@@ -100,7 +100,7 @@ dependencies:
 
 ### Persistence
 
-The MySQL database uses a PersistentVolumeClaim to store data. This is enabled by default in the `values.yaml` file.
+The MySQL database uses a PersistentVolumeClaim to store data. This is set to `false` by default in the `values.yaml` file.
 
 ### MySQL Connection
 
