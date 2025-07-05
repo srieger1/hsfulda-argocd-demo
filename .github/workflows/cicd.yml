@@ -3,9 +3,9 @@
 name: Build and Push Docker Image on DockerHub
 
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   # pull_request:
   #   branches:
   #     - main
@@ -41,7 +41,7 @@ jobs:
           context: ./calendar-app
           push: true
           tags: |
-            faizananwar532/hsfulda-argocd-demo:latest
+            faizananwar532/hsfulda-argocd-demo:v1
             faizananwar532/hsfulda-argocd-demo:${{ env.SHORT_SHA }}
           # cache-from: type=registry,ref=faizananwar532/hsfulda-argocd-demo:buildcache
           # cache-to: type=registry,ref=faizananwar532/hsfulda-argocd-demo:buildcache,mode=max

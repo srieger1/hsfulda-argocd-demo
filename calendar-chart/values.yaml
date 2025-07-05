@@ -4,7 +4,8 @@ replicaCount: 1
 
 image:
   repository: faizananwar532/hsfulda-argocd-demo
-  tag: latest
+  tag: v1
+  # tag: latest
   pullPolicy: IfNotPresent
 
 service:
