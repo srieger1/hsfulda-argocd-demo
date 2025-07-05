@@ -51,6 +51,10 @@ autoscaling:
 
 # MySQL dependency configuration
 mysql:
+  # Use the Bitnami MySQL chart
+  enabled: true
+  # Initialize database with our SQL script
+  initdbScriptsConfigMap: "{{ .Release.Name }}-init-sql" 
   auth:
     rootPassword: rootpassword
     database: calendarDB
@@ -58,9 +62,5 @@ mysql:
     password: 12123434example
   primary:
     persistence:
-      enabled: true
+      enabled: false
       size: 1Gi
-  # Use the Bitnami MySQL chart
-  enabled: true
-  # Initialize database with our SQL script
-  initdbScriptsConfigMap: "{{ .Release.Name }}-init-sql" 
