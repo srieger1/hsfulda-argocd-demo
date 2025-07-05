@@ -1,0 +1,1 @@
+# hsfulda-argocd-demo
