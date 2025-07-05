@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: calendarDB
+      MYSQL_USER: calendaruser
+      MYSQL_PASSWORD: 12123434example
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./calendar-app/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - mysql_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "calendaruser", "-p12123434example"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: 
+      context: ./calendar-app
+    ports:
+      - "3000:3000"
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: calendaruser
+      MYSQL_PASSWORD: 12123434example
+      MYSQL_DATABASE: calendarDB
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+    command: >
+      sh -c "
+        echo 'Waiting 15 seconds for MySQL to be fully ready...'
+        sleep 15
+        node server.js
+      "
+
+volumes:
+  mysql_data: 
