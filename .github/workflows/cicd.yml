@@ -45,3 +45,4 @@ jobs:
             faizananwar532/hsfulda-argocd-demo:${{ env.SHORT_SHA }}
           # cache-from: type=registry,ref=faizananwar532/hsfulda-argocd-demo:buildcache
           # cache-to: type=registry,ref=faizananwar532/hsfulda-argocd-demo:buildcache,mode=max
+          
