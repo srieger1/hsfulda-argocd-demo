@@ -1,6 +1,6 @@
 # Default values for calendar-app.
 
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: faizananwar532/hsfulda-argocd-demo
