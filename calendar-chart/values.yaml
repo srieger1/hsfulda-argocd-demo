@@ -51,12 +51,9 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
 
 # MySQL dependency configuration
-mysql:
+mariadb:
   # Use the Bitnami MySQL chart
   enabled: true
-  image:
-    repository: mariadb
-    tag: 12.1.2
   # Initialize database with our SQL script
   initdbScriptsConfigMap: "{{ .Release.Name }}-init-sql" 
   auth:
@@ -64,7 +61,6 @@ mysql:
     database: calendarDB
     username: calendaruser
     password: 12123434example
-  primary:
-    persistence:
-      enabled: false
-      size: 1Gi
+  persistence:
+    enabled: false
+    size: 1Gi
