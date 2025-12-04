@@ -54,6 +54,9 @@ autoscaling:
 mysql:
   # Use the Bitnami MySQL chart
   enabled: true
+  image:
+    repository: mariadb
+    tag: 12.1.2
   # Initialize database with our SQL script
   initdbScriptsConfigMap: "{{ .Release.Name }}-init-sql" 
   auth:
